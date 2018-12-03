@@ -9,7 +9,7 @@ tf.logging.set_verbosity(tf.logging.DEBUG) # test
 
 from hred import HRED
 from optimizer import Optimizer
-import cPickle
+import pickle as pk
 import math
 import sordoni.data_iterator as sordoni_data_iterator
 from utils import make_attention_mask
@@ -62,7 +62,7 @@ SEED = 1234
 class Trainer(object):
     def __init__(self):
 
-        vocab = cPickle.load(open(SORDONI_VOCAB_FILE, 'r'))
+        vocab = pk.load(open(SORDONI_VOCAB_FILE, 'r'))
         self.vocab_lookup_dict = {k: v for v, k, count in vocab}
 
         self.train_data, self.valid_data = sordoni_data_iterator.get_batch_iterator(np.random.RandomState(SEED), {
